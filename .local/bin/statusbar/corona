@@ -1,0 +1,11 @@
+#!/bin/sh
+
+curl -s 'https://corona-stats.online/uk?format=json' > "$HOME/.cache/corona-json"
+curl -s 'https://corona-stats.online/' > "$HOME/.cache/corona"
+
+case $BLOCK_BUTTON in
+	1) setsid -f "$TERMINAL" -e less -Sfr $HOME/.cache/corona ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+jq -rc '.data[] | .cases, .todayCases, .deaths, .todayDeaths' "$HOME/.cache/corona-json" | tr '\n' ' ' | awk -F' ' '{ print "🤮 " $1 " (" $2 ") 💀 " $3 " (" $4 ")"}'
