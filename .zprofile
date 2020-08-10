@@ -13,10 +13,7 @@ export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
-
-# ~/ Clean-up:
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
+# ~/ Clean-up: export XDG_CONFIG_HOME="$HOME/.config" export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
@@ -54,8 +51,10 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
-export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
-export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+export AWT_TOOLKIT="MToolkit wmname LG3D"	# May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING="1" 		# Fix for Java applications in dwm
+export CALIBRE_USE_DARK_PALETTE="YES"
+#export CALIBRE_USE_SYSTEM_THEME="1"
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
