@@ -206,3 +206,56 @@ class extracthere(Command):
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
 
+# fzf_fasd - Fasd + Fzf + Ranger (Interactive Style)
+class fzf_fasd(Command):
+    """
+    :fzf_fasd
+
+    Jump to a file or folder using Fasd and fzf
+
+    URL: https://github.com/clvv/fasd
+    URL: https://github.com/junegunn/fzf
+    """
+    def execute(self):
+        import subprocess
+        if self.quantifier:
+            command="fasd | fzf -e -i --tac --no-sort | awk '{ print substr($0, index($0,$2)) }'"
+        else:
+            command="fasd | fzf -e -i --tac --no-sort | awk '{ print substr($0, index($0,$2)) }'"
+        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+
+
+class fasd(Command):
+    """
+    :fasd
+
+    Jump to directory using fasd
+    """
+    def execute(self):
+        args = self.rest(1).split()
+        if args:
+            directories = self._get_directories(*args)
+            if directories:
+                self.fm.cd(directories[0])
+            else:
+                self.fm.notify("No results from fasd", bad=True)
+
+    def tab(self, tabnum):
+        start, current = self.start(1), self.rest(1)
+        for path in self._get_directories(*current.split()):
+            yield start + path
+
+    @staticmethod
+    def _get_directories(*args):
+        import subprocess
+        output = subprocess.check_output(["fasd", "-dl"] + list(args), universal_newlines=True)
+        dirs = output.strip().split("\n")
+        dirs.sort(reverse=True)  # Listed in ascending frecency
+        return dirs

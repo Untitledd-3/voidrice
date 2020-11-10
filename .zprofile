@@ -7,23 +7,23 @@
 
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
-
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
-# ~/ Clean-up: export XDG_CONFIG_HOME="$HOME/.config" export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
+# ~/ Clean-up:
+
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
+
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/inputrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-export WEECHAT_HOME="$XDG_CONFIG_HOME"/weechat
+export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
+export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
@@ -54,6 +54,10 @@ export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	# May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING="1" 		# Fix for Java applications in dwm
 export CALIBRE_USE_DARK_PALETTE="YES"
+
+# fasd
+eval "$(fasd --init auto)"
+
 #export CALIBRE_USE_SYSTEM_THEME="1"
 
 # This is the list for lf icons:
@@ -130,7 +134,7 @@ ex=🎯:\
 "
 
 [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
-
+[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc ] && shortcuts >/dev/null 2>&1 &
 if pacman -Qs libxft-bgra >/dev/null 2>&1; then
 	# Start graphical server on tty1 if not already running.
 	[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx

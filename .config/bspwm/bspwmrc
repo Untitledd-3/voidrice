@@ -6,18 +6,15 @@ nm-applet &
 xrdb ~/.Xresources &
 picom -b --experimental-backends &
 xwallpaper --zoom ~/.config/wall.png &
-#killall "launchlemon"
-#launchlemon &
-killall -q polybar
-polybar bar &
+killall sxhkd &
+sxhkd
+launchpolybar &
 killall bspswallow
 pidof bspswallow || bspswallow &
-killall sxhkd
-sxhkd &
 
 ###---MONITORS---###
-bspc monitor DP-1 -d 1 2 3 4 5
-bspc monitor HDMI-0 -d 6 7 8 9 0
+bspc monitor HDMI-0 -d 1 2 3 4 5
+bspc monitor DP-1 -d 6 7 8 9
 
 ###---Global Settings---###
 bspc config automatic_scheme alternate

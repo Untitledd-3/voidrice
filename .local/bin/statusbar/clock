@@ -1,8 +1,5 @@
 #!/bin/sh
 
-clock=$(date '+%I')
-
-
 case $BLOCK_BUTTON in
 	1) notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" && notify-send "Appointments" "$(calcurse -D ~/.config/calcurse -d3)" ;;
 	2) setsid -f "$TERMINAL" -e calcurse ;;
@@ -11,4 +8,4 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-date "+%d/%m/%Y (%a) %H:%M"
+date "+%d/%m/%Y (%a) %T"

@@ -20,9 +20,10 @@ Plug 'tpope/vim-commentary'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'ap/vim-css-color'
 Plug 'Shougo/deoplete.nvim'
+Plug 'jceb/vim-orgmode'
 call plug#end()
 
-let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_at_startup = 1
 
 set bg=light
 set go=a
@@ -32,6 +33,7 @@ set clipboard+=unnamedplus
 
 " Some basics:
 	nnoremap c "_c
+	nnoremap <C-f> :NERDTreeToggle<CR>
 	set nocompatible
 	filetype plugin on
 	syntax on
@@ -124,7 +126,10 @@ set clipboard+=unnamedplus
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 " Update binds when sxhkdrc is updated.
 	autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
-
+" U-date zprofile automatticallly
+	autocmd BufWritePost *zprofile !source %
+" Update binds when sxhkdrc is updated.
+	autocmd BufWritePost *directories !shortcuts %
 " Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
 if &diff
     highlight! link DiffText MatchParen

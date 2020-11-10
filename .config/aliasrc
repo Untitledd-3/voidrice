@@ -29,15 +29,18 @@ alias \
 	sdn="sudo shutdown -h now" \
 	f="$FILE" \
 	e="$EDITOR" \
-	v="$EDITOR" \
 	p="sudo pacman" \
 	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
-	z="zathura"
-
+	wiki="vim ~/media/wiki/vimwiki/index.md" \
 alias \
 	magit="nvim -c MagitOnly" \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
 	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
 	tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf" \
+#    ranger="ranger --choosedir=${XDG_CONFIG_HOME:-$HOME/.config}/ranger/rangerdir; LASTDIR=`cat ${XDG_CONFIG_HOME:-$HOME/.config}/ranger/rangerdir`; cd "$LASTDIR""
+
+alias v="f -e nvim" # quick opening files with vim
+alias m="f -e mpv" # quick opening files with mplayer
+alias o="a -e xdg-open" # quick opening files with xdg-open
