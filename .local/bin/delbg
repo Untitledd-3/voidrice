@@ -1,4 +1,4 @@
 #!/bin/sh
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
 txt="$(readlink -f "$HOME/.local/share/bg")"
-rm "$txt" && notify-send -i "$bgloc" "wallpaper deleted - $txt"
+rm "$txt" && notify-send -i "$bgloc" "wallpaper deleted - $txt" && ranbg
