@@ -57,7 +57,7 @@ scroll-down = "#i3.next"
 modules-left = i3 xwindow
 #modules-right = pacman-packages torrents cpu-usage cpu-temperature memory backlight volume battery weather time
 
-modules-right = crypto gme corona weather memory pulseaudio time
+modules-right = pacman-packages crypto gme corona weather memory pulseaudio time
 tray-position = right
 tray-padding = 1
 tray-background = ${colors.background-alt}
@@ -179,9 +179,10 @@ format-padding = 0
 
 [module/pacman-packages]
 type = custom/ipc
-hook-0 = sudo pacman -Qu | wc -l
+hook-0 = yay -Qu | wc -l
 format-prefix = "📦 "
-format-underline = #268bd2
+click-left = updatepackages
+initial = 1
 
 [module/torrents]
 type = custom/ipc
@@ -253,6 +254,7 @@ type = custom/script
 exec = corona
 label = "%output%"
 interval = 1800
+click-left = coronastats
 click-right = $TERMINAL -e less -Sfr $HOME/.cache/corona
 
 [module/gme]
