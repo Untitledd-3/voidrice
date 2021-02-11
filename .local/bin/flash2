@@ -1,0 +1,2 @@
+#!/bin/sh
+cd .local/src/qmk_firmware && make handwired/dactyl_manuform_r_track:default && /home/ed/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/bin/avrdude -C/home/ed/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf -v -patmega32u4 -cavr109 -P/dev/ttyACM0 -b57600 -D -Uflash:w:/home/ed/.local/src/qmk_firmware/handwired_dactyl_manuform_r_track_default.hex:i

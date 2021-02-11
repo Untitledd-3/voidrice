@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find "$HOME/videos/movies/" "$HOME/videos/tv/" -type f \( -name '*.mkv' -o -name '*.mp4' \) -execdir basename '{}' ';'
